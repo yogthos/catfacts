@@ -24,7 +24,7 @@
        (ok {:response_type "in_channel"
             :attachments
             [{:fallback "Cat Gif."
-              :image_url "http://thecatapi.com/api/images/get?format=src&type=gif"}]}))
+              :image_url (str "http://thecatapi.com/api/images/get?format=src&type=gif&" (.getTime (java.util.Date.)))}]}))
   (GET "/fact" []
        :return CatFact
        :summary "Gets a Cat Fact!"
