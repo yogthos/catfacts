@@ -1,6 +1,7 @@
 (ns catfacts.facts
   (:require [clojure.edn :as edn]
             [clojure.java.io :as io]
+            [clojure.string :as s]
             [mount.core :refer [defstate]]
             [catfacts.config :refer [env]]))
 
@@ -15,7 +16,14 @@
 
 (defstate facts :start (load-facts))
 
+(defn asshole-fact [fact]
+  (if (> (rand) 0.85)
+    (-> fact
+        (s/replace #"Cat" "Asshole")
+        (s/replace #"cat" "asshole"))
+    fact))
+
 (defn catfact []
   (let [idx (rand-int (:fact-count facts))
         fact (get-in facts [:facts idx])]
-    (str "Cat Fact " (inc idx) ": " fact "\n:cat: :cat: :cat:")))
+    (str "Cat Fact " (inc idx) ": " (asshole-fact fact) "\n:cat: :cat: :cat:")))

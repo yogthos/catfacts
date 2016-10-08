@@ -4,7 +4,7 @@
             [schema.core :as s]
             [catfacts.facts :refer [catfact]]))
 
-(s/defschema CatFact {:response-type String
+(s/defschema CatFact {:response_type String
                       :text String})
 
 (defapi service-routes
@@ -17,5 +17,5 @@
   (GET "/" []
        :return CatFact
        :summary "Gets a Cat Fact!"
-       (ok {:response-type "in_channel"
+       (ok {:response_type "in_channel"
             :text (catfact)})))
