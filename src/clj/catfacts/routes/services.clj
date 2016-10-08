@@ -4,8 +4,12 @@
             [schema.core :as s]
             [catfacts.facts :refer [catfact]]))
 
-(s/defschema CatFact {:response_type String
-                      :text String})
+(s/defschema CatFact {:response_type s/Str
+                      :text s/Str})
+
+(s/defschema CatGif {:response_type s/Str
+                      :attachments [{:fallback s/Str
+                                     :image_url s/Str}]})
 
 (defapi service-routes
   {:swagger {:ui   "/swagger-ui"
@@ -14,7 +18,14 @@
                            :title       "Sample API"
                            :description "Sample Services"}}}}
 
-  (GET "/" []
+  (GET "/gif" []
+       :return CatGif
+       :summary "Gets a Cat Fact!"
+       (ok {:response_type "in_channel"
+            :attachments
+            [{:fallback "Cat Gif."
+              :image_url "http://thecatapi.com/api/images/get?format=src&type=gif"}]}))
+  (GET "/fact" []
        :return CatFact
        :summary "Gets a Cat Fact!"
        (ok {:response_type "in_channel"
