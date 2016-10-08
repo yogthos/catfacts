@@ -23,7 +23,8 @@
                  [luminus-nrepl "0.1.4"]
                  [metosin/compojure-api "1.1.8"]
                  [org.webjars/webjars-locator-jboss-vfs "0.1.0"]
-                 [luminus-immutant "0.2.2"]]
+                 [luminus-immutant "0.2.2"]
+                 [clj-http "2.3.0"]]
 
   :min-lein-version "2.0.0"
 
@@ -51,7 +52,7 @@
                                  [ring/ring-devel "1.5.0"]
                                  [pjstadig/humane-test-output "0.8.1"]]
                   :plugins      [[com.jakemccrary/lein-test-refresh "0.14.0"]]
-                  
+
                   :source-paths ["env/dev/clj" "test/clj"]
                   :resource-paths ["env/dev/resources"]
                   :repl-options {:init-ns user}
